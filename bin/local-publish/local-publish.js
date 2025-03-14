@@ -7,7 +7,7 @@ import readline from "readline";
 
 const currentWorkingDirectory = process.cwd();
 const packageJsonPath = join(currentWorkingDirectory, "package.json");
-const configPath = join(currentWorkingDirectory, "jvdl-local-publish.json");
+const configPath = join(currentWorkingDirectory, "jvdl.json");
 
 const packageJson = JSON.parse(readFileSync(packageJsonPath, "utf-8"));
 const config = existsSync(configPath) ? JSON.parse(readFileSync(configPath, "utf-8"))['local-publish'] : {};

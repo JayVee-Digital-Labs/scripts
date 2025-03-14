@@ -1,6 +1,6 @@
 {
   "name": "@jayvee-digital-labs/scripts",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Helper Scripts that help deploy to other random stuff",
   "main": "index.js",
   "type": "module",
@@ -15,7 +15,7 @@
   },
   "author": "Joshua J Villahermosa<joshv@jayveedigitallabs.com>",
   "license": "MIT",
-  "latestCommit": "feat(jvdl-local-publish): add base script\n\nMigrated from the jvdl-design-system-repo",
+  "latestCommit": "fix(local-publish): accident on the naming of the config file",
   "publishConfig": {
     "access": "public"
   }
