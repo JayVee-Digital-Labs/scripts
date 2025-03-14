@@ -1,14 +1,23 @@
+#!/usr/bin/env node
+
 import { execSync } from "child_process";
-import { readFileSync, writeFileSync } from "fs";
+import { readFileSync, writeFileSync, existsSync } from "fs";
 import { join } from "path";
 import readline from "readline";
 
-import { fileURLToPath } from "url";
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = join(__filename, "..");
+const currentWorkingDirectory = process.cwd();
+const packageJsonPath = join(currentWorkingDirectory, "package.json");
+const configPath = join(currentWorkingDirectory, "jvdl-local-publish.json");
 
-const packageJsonPath = join(__dirname, "../package.json");
 const packageJson = JSON.parse(readFileSync(packageJsonPath, "utf-8"));
+const config = existsSync(configPath) ? JSON.parse(readFileSync(configPath, "utf-8"))['local-publish'] : {};
+
+console.log("🚀 ~ config:", config)
+const isDryMode = process.argv.includes("--dry-mode");
+
+if (isDryMode) {
+  console.log("\x1b[42m\x1b[30mRunning in dry mode...\x1b[0m");
+}
 
 function getNextVersion(currentVersion, commitType) {
   const [major, minor, patch] = currentVersion.split(".").map(Number);
@@ -50,15 +59,19 @@ function updateVersion(newVersion) {
 
 function createGitTag(version) {
   console.log(`Creating git tag v${version}...`);
-  execSync(`git tag v${version}`);
+  if (!isDryMode) {
+    execSync(`git tag v${version}`);
+  }
 }
 
 function pushChanges() {
   console.log("Pushing changes...");
-
-  // Tests should have ran at this point
-  execSync("git push origin main --no-verify", { stdio: "inherit" }); // Adjust branch name if necessary
-  execSync("git push origin --tags --no-verify", { stdio: "inherit" });
+  if (!isDryMode) {
+    execSync("git push origin main --no-verify", { stdio: "inherit" }); // Adjust branch name if necessary
+    execSync("git push origin --tags --no-verify", { stdio: "inherit" });
+  } else {
+    console.log("Dry mode enabled, skipping git pushes");
+  }
 }
 
 function promptUser() {
@@ -75,6 +88,15 @@ function promptUser() {
       resolve(answer.toLowerCase() === "y");
     });
   });
+}
+
+function runCommand(command, description) {
+  if (command) {
+    console.log(`${description}...`);
+    execSync(command, { stdio: "inherit" });
+  } else {
+    console.log(`${description} command not passed in.`);
+  }
 }
 
 async function main() {
@@ -96,11 +118,14 @@ async function main() {
   console.log("Installing packages...");
   execSync("npm install", { stdio: "inherit" });
 
-  console.log("Building App...");
-  execSync("npm run build", { stdio: "inherit" });
+  const buildCommand = `npm run ${config["npm-build"] || "build"}`;
+  const testCommand = `npm run ${config["npm-test"] || "test"}`;
+  const buildStorybookCommand = config["npm-build-storybook"] ? `npm run ${config["npm-build-storybook"]}` : null;
+  const deployCommand = config["deploy"];
+  const npmPublish = config["enable-npm-publish"];
 
-  console.log("Running Tests...");
-  execSync("npm run prepush:ci", { stdio: "inherit" });
+  runCommand(buildCommand, "Building App");
+  runCommand(testCommand, "Running Tests");
 
   console.log("Staging updated package.json...");
   execSync("git add package.json package-lock.json", { stdio: "inherit" });
@@ -111,14 +136,22 @@ async function main() {
   createGitTag(newVersion);
   pushChanges();
 
-  console.log("Building Storybook files...");
-  execSync("npm run build-storybook", { stdio: "inherit" });
+  runCommand(buildStorybookCommand, "Building Storybook files");
 
-  console.log("Deploying to Firebase...");
-  execSync("firebase deploy", { stdio: "inherit" });
+  if (!isDryMode) {
+    if (deployCommand) {
+      runCommand(deployCommand, "Deploying");
+    } else {
+      console.log("Deploy command not passed in.");
+    }
 
-  console.log("Publishing to NPM...");
-  execSync("npm publish", { stdio: "inherit" });
+    if (npmPublish) {
+      console.log("Publishing to NPM...");
+      execSync("npm publish", { stdio: "inherit" });
+    }
+  } else {
+    console.log("Dry mode enabled, skipping Firebase deployment and NPM publish.");
+  }
 }
 
 main();

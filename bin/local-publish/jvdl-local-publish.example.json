@@ -1,0 +1,9 @@
+{
+  "local-publish": {
+    "npm-build": "build-random",
+    "npm-test": "prepush:ci",
+    "npm-build-storybook": "build-storybook",
+    "enable-npm-publish": true,
+    "deploy": "console.log('DEPLOY')"
+  }
+}

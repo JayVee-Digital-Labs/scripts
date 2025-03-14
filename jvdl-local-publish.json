@@ -1,0 +1,5 @@
+{
+  "local-publish": {
+    "enable-npm-publish": true
+  }
+}

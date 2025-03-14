@@ -1,6 +1,6 @@
 {
   "name": "@jayvee-digital-labs/scripts",
-  "version": "1.8.0",
+  "version": "1.1.0",
   "description": "Helper Scripts that help deploy to other random stuff",
   "main": "index.js",
   "type": "module",
@@ -9,12 +9,14 @@
     "jvdl-local-publish": "./bin/local-publish/local-publish.js"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build-random": "echo \"Error: no build\" && exit 0",
-    "prepush:ci": "echo \"Error: no prepush:ci specified\" && exit 0",
-    "build-storybook": "echo \"Error: no build-storybook specified\" && exit 0"
+    "test": "echo \"No test specified\" && exit 0",
+    "build": "echo \"No build\" && exit 0",
+    "local:publish": "node ./bin/local-publish/local-publish.js"
   },
-  "author": "",
-  "license": "ISC",
-  "latestCommit": "feat(scripts): init"
+  "author": "Joshua J Villahermosa<joshv@jayveedigitallabs.com>",
+  "license": "MIT",
+  "latestCommit": "feat(jvdl-local-publish): add base script\n\nMigrated from the jvdl-design-system-repo",
+  "publishConfig": {
+    "access": "public"
+  }
 }
