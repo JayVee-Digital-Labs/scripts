@@ -13,7 +13,6 @@ npm install -g @jayvee-digital-labs/scripts
 ## Scripts
 
 ### `jvdl-local-publish`
-(Fast Follow Very Soon)
 
 The `jvdl-local-publish` script is designed to streamline the process of publishing your project locally. It performs the following tasks:
 
