@@ -1,0 +1,30 @@
+{
+  "scripts": {
+    "commitlint": "commitlint --edit --from=HEAD~1 --to=HEAD",
+    "deploy": "echo \"No deploy Script Set\" && exit 0",
+    "lint": "eslint",
+    "list:specs": "docker run --rm -v $(pwd):/app -w /app cypress/included:14.1.0 sh -c 'find . -name \"*.vr.cy.tsx\"'",
+    "prepare": "husky",
+    "prepush:ci": "npm run lint && npm run test:vr && npm run test:ci",
+    "local:publish": "jvdl-local-publish",
+    "test": "npm run test:open",
+    "test:ci": "cypress run --spec \"**/*.cy.tsx,!**/*.vr.cy.tsx\"",
+    "test:vr": "docker run --rm -v $(pwd):/app -w /app -e RUN_VR=true cypress/included:14.1.0 cypress run",
+    "test:vr:specific": "docker run --rm -v $(pwd):/app -w /app -e RUN_VR=true cypress/included:14.1.0 cypress run --spec",
+    "test:open": "cypress open",
+    "test:vr:update": "docker run --rm -v $(pwd):/app -w /app -e RUN_VR=true cypress/included:14.1.0 cypress run --env updateSnapshots=true"
+  },
+  "eslintConfig": {
+    "extends": [
+      "plugin:storybook/recommended"
+    ]
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

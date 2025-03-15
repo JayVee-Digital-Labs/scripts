@@ -1,0 +1,31 @@
+FROM cypress/included:14.1.0
+
+# Set working directory
+WORKDIR /app
+
+# Install additional dependencies for consistent font rendering
+RUN apt-get update && apt-get install -y \
+    fonts-liberation \
+    fontconfig \
+    --no-install-recommends \
+    && rm -rf /var/lib/apt/lists/*
+
+# Install Node.js dependencies
+# This uses the package.json and package-lock.json from your project
+COPY package*.json ./
+RUN npm ci
+
+# Copy the rest of your project
+# In practice, you'd use volumes for local development
+COPY . .
+
+# Set environment variables
+ENV CYPRESS_VIEWPORT_WIDTH=1000
+ENV CYPRESS_VIEWPORT_HEIGHT=660
+ENV CYPRESS_FORCE_DEVICE_SCALE_FACTOR=1
+
+RUN ls
+
+# Default command runs VR tests
+CMD ["cypress", "run", "--component", "--spec", "src/**/*.vr.cy.tsx"]
+# CMD ["ls"]

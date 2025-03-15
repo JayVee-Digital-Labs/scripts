@@ -1,0 +1,6 @@
+{
+  "local-publish": {
+    "npm-test": "prepush:ci",
+    "deploy": "firebase deploy"
+  }
+}

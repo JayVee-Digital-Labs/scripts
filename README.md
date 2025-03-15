@@ -28,6 +28,19 @@ This script is intended to be used locally as a temporary CI/CD process or if yo
 
 For more detailed information on how to use the `local-publish` script, please refer to the [local-publish README](./bin/local-publish/README.md).
 
+### `jvdl-standardize-repo`
+
+The `jvdl-standardize-repo` script helps to standardize a repository by installing required packages, setting up Husky hooks, copying configuration files, merging JSON files, building a Docker image, and more. It performs the following tasks:
+
+1. Installs necessary npm packages such as `rimraf`, `husky`, `cypress`, `commitizen`, `prettier`, and others.
+2. Creates a `.husky` directory and adds pre-commit and pre-push hooks.
+3. Copies various configuration files and directories to the root of the repository.
+4. Merges `package.json` and `tsconfig.json` with the existing ones in the repository.
+5. Builds a Docker image for Cypress visual regression tests.
+
+This script should only be used on web applications with TypeScript enabled. If any step fails, the script will automatically rollback the changes.
+
+For more detailed information on how to use the `standardize-repo` script, please refer to the [standardize-repo README](./bin/standardize-repo/README.md).
 
 ## License
 
