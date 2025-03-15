@@ -1,13 +1,12 @@
 # Local Publish Script
 
-This script automates the process of running tests, updating the version, creating a git tag, pushing changes to the repository, building Storybook static files, deploying to Firebase hosting, and publishing to NPM. It is intended to be used locally as a temporary CI/CD process or if CI/CD is broken.
+This script automates the process of running tests, updating the version, creating a git tag, pushing changes to the repository, building Storybook static files, deploying, and publishing to NPM. It is intended to be used locally as a temporary CI/CD process or if CI/CD is broken.
 
 ## Prerequisites
 
 - Node.js installed
 - NPM installed
 - Git installed
-- Firebase CLI installed (if deploying to Firebase)
 
 ## Setup
 
@@ -39,7 +38,7 @@ Create a configuration file `jvdl-local-publish.json` in the root of your projec
 
 ## Options
 
-- `--dry-mode`: Run the script in dry mode, which skips git pushes, Firebase deployment, and NPM publish.
+- `--dry-mode`: Run the script in dry mode, which skips git pushes, deployment, and NPM publish.
 
   ```sh
   jvdl-local-publish --dry-mode
@@ -68,7 +67,7 @@ If no configuration is provided, the script will use the following default value
 9. Creates a git tag with the new version.
 10. Pushes changes to the repository.
 11. Builds Storybook static files (if specified in the configuration).
-12. Deploys to Firebase (if specified in the configuration).
+12. Deploys (if specified in the configuration).
 13. Publishes the package to NPM (if enabled in the configuration).
 
 ## Example Configuration
