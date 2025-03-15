@@ -111,6 +111,7 @@ const standardizeRepo = async () => {
       'cypress',
       '@simonsmith/cypress-image-snapshot',
       'commitizen',
+      'commitlint',
       '@commitlint/config-conventional',
       '@jayvee-digital-labs/scripts',
       'prettier'
