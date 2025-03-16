@@ -1,6 +1,6 @@
 # Standardize Repo Script
 
-This script helps to standardize a repository by installing required packages, setting up Husky hooks, copying configuration files, merging JSON files, building a Docker image, and more. It is designed to be used on web applications with TypeScript enabled.
+This script helps to standardize a repository by installing required packages, setting up Husky hooks, copying configuration files, merging JSON files, building a Docker image, and more. It is designed to be used on web NEXTJS applications with TypeScript enabled, but it can be used for any other front end application. Be aware you may need to make tweaks later to make it work.
 
 ## Requirements
 

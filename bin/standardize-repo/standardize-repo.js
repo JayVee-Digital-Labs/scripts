@@ -75,7 +75,7 @@ const promptUser = () => {
     });
 
     const question =
-      "\x1b[41m\x1b[30mThis script will install required packages, set up Husky hooks, copy configuration files, merge JSON files, build a Docker image, and standardize the repository. It should only be used on Web Apps with TypeScript enabled, not design systems or utility scripts, and with at least ONE commit in the repo for a proper rollback if anything fails. Do you want to proceed? (Y/N): \x1b[0m";
+      "\x1b[41m\x1b[30mThis script will install required packages, set up Husky hooks, copy configuration files, merge JSON files, build a Docker image, and standardize the repository. It should only be used on Web Apps (using NEXTJS) with TypeScript enabled, not design systems or utility scripts, and with at least ONE commit in the repo for a proper rollback if anything fails. Do you want to proceed? (Y/N): \x1b[0m";
     rl.question(question, (answer) => {
       rl.close();
       resolve(answer.toLowerCase() === "y");
@@ -113,6 +113,7 @@ const standardizeRepo = async () => {
       'commitizen',
       'commitlint',
       'cypress',
+      'http-server',
       'husky',
       'prettier',
       'rimraf'

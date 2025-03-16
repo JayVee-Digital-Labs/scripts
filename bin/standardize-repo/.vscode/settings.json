@@ -1,10 +1,9 @@
 {
   "editor.formatOnSave": true,
   "prettier.requireConfig": true,
+  "files.insertFinalNewline": true,
   "typescript.preferences.importModuleSpecifier": "non-relative",
   "typescript.preferences.importModuleSpecifierEnding": "js",
-  "javascript.preferences.importModuleSpecifier": "non-relative",
-  "javascript.preferences.importModuleSpecifierEnding": "js",
   "paths": {
     "@/*": ["src/*"]
   }
