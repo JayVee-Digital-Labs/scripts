@@ -12,20 +12,18 @@ RUN apt-get update && apt-get install -y \
 
 # Install Node.js dependencies
 # This uses the package.json and package-lock.json from your project
-COPY package*.json ./
-RUN npm ci
+# COPY package*.json ./
 
 # Copy the rest of your project
 # In practice, you'd use volumes for local development
 COPY . .
 
+RUN npm ci
+
 # Set environment variables
 ENV CYPRESS_VIEWPORT_WIDTH=1000
 ENV CYPRESS_VIEWPORT_HEIGHT=660
-ENV CYPRESS_FORCE_DEVICE_SCALE_FACTOR=1
+ENV CYPRESS_FORCE_DEVICE_SCALE_npmFACTOR=1
+EXPOSE 3000
 
 RUN ls
-
-# Default command runs VR tests
-CMD ["cypress", "run", "--component", "--spec", "src/**/*.vr.cy.tsx"]
-# CMD ["ls"]

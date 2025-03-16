@@ -106,15 +106,16 @@ const standardizeRepo = async () => {
 
     // 1. Install the required packages
     const packages = [
-      'rimraf',
-      'husky',
-      'cypress',
-      '@simonsmith/cypress-image-snapshot',
-      'commitizen',
-      'commitlint',
       '@commitlint/config-conventional',
       '@jayvee-digital-labs/scripts',
-      'prettier'
+      '@simonsmith/cypress-image-snapshot',
+      '@testing-library/cypress',
+      'commitizen',
+      'commitlint',
+      'cypress',
+      'husky',
+      'prettier',
+      'rimraf'
     ];
     execSync(`npm install ${packages.join(' ')} --save-dev`, { stdio: 'inherit' });
 

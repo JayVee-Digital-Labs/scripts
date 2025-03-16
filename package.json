@@ -1,6 +1,6 @@
 {
   "name": "@jayvee-digital-labs/scripts",
-  "version": "1.2.2",
+  "version": "1.2.3",
   "description": "Helper Scripts that help deploy to other random stuff",
   "main": "index.js",
   "type": "module",
@@ -16,7 +16,7 @@
   },
   "author": "Joshua J Villahermosa<joshv@jayveedigitallabs.com>",
   "license": "MIT",
-  "latestCommit": "fix(standardize-repo): add missing commitlint install",
+  "latestCommit": "fix(standardize-repo): various fixes\n\nFixes include\n- Proper commands path for cypress\n- Fix VR Tests to respect npm scripts passed in\n- Missing required packages",
   "publishConfig": {
     "access": "public"
   },
