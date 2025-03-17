@@ -16,9 +16,9 @@
     "test:cypress:vr-update": "start-server-and-test \"npm start\" http://localhost:3000 \"cypress run --env updateSnapshots=true\"",
     "test:ci": "npm run test:cypress:run",
     "test:open": "start-server-and-test \"npm start\" http://localhost:3000 \"cypress open\"",
-    "test:vr": "docker run --rm --entrypoint \"\" -v $(pwd):/app -w /app -e RUN_VR=true cypress-vr-tests npm run test:cypress:run",
-    "test:vr:specific": "docker run --rm --entrypoint \"\"  -v $(pwd):/app -w /app -e RUN_VR=true cypress-vr-tests npm run test",
-    "test:vr:update": "docker run --rm --entrypoint \"\"  -v $(pwd):/app -w /app -e RUN_VR=true cypress-vr-tests npm run test:cypress:vr-update"
+    "test:vr": "docker run --rm --entrypoint \"\" -v $(pwd):/app -w /app -e RUN_VR=true cypress-vr-tests npm run build && npm run test:cypress:run",
+    "test:vr:specific": "docker run --rm --entrypoint \"\"  -v $(pwd):/app -w /app -e RUN_VR=true cypress-vr-tests npm run build && npm run test",
+    "test:vr:update": "docker run --rm --entrypoint \"\"  -v $(pwd):/app -w /app -e RUN_VR=true cypress-vr-tests npm run build && npm run test:cypress:vr-update"
   },
   "eslintConfig": {
     "extends": [
