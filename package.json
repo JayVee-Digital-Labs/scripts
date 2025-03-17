@@ -1,6 +1,6 @@
 {
   "name": "@jayvee-digital-labs/scripts",
-  "version": "1.2.5",
+  "version": "1.2.6",
   "description": "Helper Scripts that help deploy to other random stuff",
   "main": "index.js",
   "type": "module",
@@ -16,7 +16,7 @@
   },
   "author": "Joshua J Villahermosa<joshv@jayveedigitallabs.com>",
   "license": "MIT",
-  "latestCommit": "fix(standardize-repo): add additional build commands for docker\n\nYes, there are redundant builds",
+  "latestCommit": "fix(local-publish): add new line when updating versions",
   "publishConfig": {
     "access": "public"
   },

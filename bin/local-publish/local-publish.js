@@ -54,7 +54,7 @@ function updateVersion(newVersion) {
   const latestCommit = execSync("git log -1 --pretty=%B").toString().trim();
   console.log(`Latest commit: ${latestCommit}`);
   packageJson.latestCommit = latestCommit;
-  writeFileSync(packageJsonPath, JSON.stringify(packageJson, null, 2));
+  writeFileSync(packageJsonPath, `${JSON.stringify(packageJson, null, 2)}\n`);
 }
 
 function createGitTag(version) {
