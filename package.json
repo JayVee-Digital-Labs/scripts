@@ -1,6 +1,6 @@
 {
   "name": "@jayvee-digital-labs/scripts",
-  "version": "1.2.6",
+  "version": "1.2.7",
   "description": "Helper Scripts that help deploy to other random stuff",
   "main": "index.js",
   "type": "module",
@@ -16,7 +16,7 @@
   },
   "author": "Joshua J Villahermosa<joshv@jayveedigitallabs.com>",
   "license": "MIT",
-  "latestCommit": "fix(local-publish): add new line when updating versions",
+  "latestCommit": "fix(standardize-repo): add in new fixes\n\nMissing Prettier Scripts, .env support, next config",
   "publishConfig": {
     "access": "public"
   },

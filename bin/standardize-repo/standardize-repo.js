@@ -157,6 +157,12 @@ const standardizeRepo = async () => {
     // 12. Copy the .vscode folder to the root of the repo
     copyDirectory(path.join(__dirname, '.vscode'), path.join(process.cwd(), '.vscode'));
 
+    // 13. Copy .env.example to the root of the repo
+    copyFile(path.join(__dirname, '.env.example'), path.join(process.cwd(), '.env.example'));
+
+    // 14. Copy next.config.ts to the root of the repo
+    copyFile(path.join(__dirname, 'next.config.ts'), path.join(process.cwd(), 'next.config.ts'));
+
     console.log('Repository has been standardized.');
   } catch (error) {
     console.error(error.message);
